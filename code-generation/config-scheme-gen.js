@@ -11,7 +11,10 @@ const file = join(__dirname, '../src/generated/config_boundary.ts')
 
 console.log(`Starting code generation for ${file}`)
 
-const zodSchema = parseSchema(schema)
+let zodSchema = parseSchema(schema)
+
+// Fix json-schema-to-zod not supporting zod 4 yet, see https://github.com/StefanTerdell/json-schema-to-zod/pull/131
+zodSchema = zodSchema.replace(/\.record\(/g, '.record(z.string(), ');
 
 const formatting = format(
     `

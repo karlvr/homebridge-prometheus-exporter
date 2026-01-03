@@ -91,7 +91,7 @@ export const fastifyServe: HttpAdapter = async (server: HttpServer) => {
     })
 
     fastify.setErrorHandler(async (error, request: FastifyRequest, reply: FastifyReply) => {
-        adaptResponseToReply(server.onError(error), reply)
+        adaptResponseToReply(server.onError(error as Error), reply)
     })
 
     fastify.setNotFoundHandler(async (request: FastifyRequest, reply: FastifyReply) => {

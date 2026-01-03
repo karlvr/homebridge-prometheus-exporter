@@ -23,7 +23,7 @@ describe('Test boundary checker', () => {
 
     test('Returns error and insightful error message on failing check for simple string', () => {
         expect(() => checkBoundary(z.string(), 123)).toThrow(
-            '[invalid_type] Expected string, received number (data is "123")',
+            'Error checking type. Details: [invalid_type] Invalid input: expected string, received number (data is "123")',
         )
     })
 
@@ -36,9 +36,9 @@ describe('Test boundary checker', () => {
             }),
         ).toThrow(
             [
-                '[invalid_literal] Invalid literal value, expected "something" at path "member" (data at resolved path "member" is ""something else"") | ',
-                '[invalid_literal] Invalid literal value, expected "something else" at path "anotherMember" (data at resolved path "anotherMember" is ""unexpected"") | ',
-                '[invalid_literal] Invalid literal value, expected "member" at path "yetAnotherMember.[0].member" (data at resolved path "yetAnotherMember.[0]" is "{"foo":123}")',
+                'Error checking type. Details: [invalid_value] Invalid input: expected "something" at path "member" (data at resolved path "member" is ""something else"") | ',
+                '[invalid_value] Invalid input: expected "something else" at path "anotherMember" (data at resolved path "anotherMember" is ""unexpected"") | ',
+                '[invalid_value] Invalid input: expected "member" at path "yetAnotherMember.[0].member" (data at resolved path "yetAnotherMember.[0]" is "{"foo":123}")',
             ].join(''),
         )
     })

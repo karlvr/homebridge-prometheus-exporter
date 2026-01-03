@@ -27,7 +27,7 @@ export const ConfigBoundary = z.object({
     tls_cert_file: z.string().describe('Path to TLS certificate file (in PEM format)').optional(),
     tls_key_file: z.string().describe('Path to TLS key file').optional(),
     basic_auth: z
-        .record(z.string())
+        .record(z.string(), z.string())
         .describe(
             'Usernames and passwords for basic auth. Object key is the username, object value is the password. Password must be encoded with bcrypt. Example: {"joanna": "$2a$12$5/mmmRB28wg9yzaXhee5Iupq3UrFr/qMgAe9LvAxGoY5jLcfVGTUq"}',
         )

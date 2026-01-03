@@ -1,6 +1,6 @@
 import type z from 'zod'
 
-type Path = (string | number)[]
+type Path = PropertyKey[]
 
 function resolvePath(data: unknown, path: Path): { resolvedValue: string; resolvedPath: Path } {
     const resolvedPath: Path = []
